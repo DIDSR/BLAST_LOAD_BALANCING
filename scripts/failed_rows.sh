@@ -4,7 +4,7 @@
 # Run as: 
 # bash failed_rows.sh 
 
-DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface/time_summary_old_query
+DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface/time_summary
 OUTPUT=failed_rows.txt
 echo `date` > ${OUTPUT}
 echo "Files on directory: $DIR" >> ${OUTPUT}
