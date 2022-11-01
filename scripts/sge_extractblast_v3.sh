@@ -1,13 +1,9 @@
 #$ -P CDRHID0014
 #$ -cwd 
 #$ -l h_rt=48:00:00 
-#						$ -l h_vmem=2.5G 
 #$ -S /bin/sh 
 #$ -j y 
 #$ -o sge_results
-#				$ -N blast_array
-#			$ -t 1-90
-#				$ -pe thread 8
 
 # This script runs all MxN combinations from m_vals and n_vals in an array job
 # usage: qsub -l <nodename> sge_extractblast_v3.sh <description>
