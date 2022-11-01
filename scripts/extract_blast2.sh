@@ -10,14 +10,14 @@
 
 BASE_DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface
 
-# TIME_SUMMARY_DIR=${BASE_DIR}/time_summary						# new query result dir
-TIME_SUMMARY_DIR=${BASE_DIR}/time_summary_old_query				# old query result dir
+TIME_SUMMARY_DIR=${BASE_DIR}/time_summary				# new query result dir
+# TIME_SUMMARY_DIR=${BASE_DIR}/time_summary_old_query			# old query result dir
 
 mkdir -p ${BASE_DIR}/sge_results
 mkdir -p ${TIME_SUMMARY_DIR}
 
-# QUERY_FILE=${BASE_DIR}/orig_query_split/SRR5713923			# new query file
-QUERY_FILE=${BASE_DIR}/orig_old_query_split/orig_query			# old query file
+QUERY_FILE=${BASE_DIR}/orig_query_split/SRR5713923				# new query file
+# QUERY_FILE=${BASE_DIR}/orig_old_query_split/orig_query			# old query file
 
 
 BASE_DB_DIR=/projects/mikem/UserSupport/ncbi/nt_2020
@@ -44,8 +44,8 @@ echo $SPLIT_DB
 NREC_QUERY=$2
 echo $NREC_QUERY
 # location of extracted query
-# SPLIT_QUERY=${BASE_DIR}/orig_query_split/orig_query"$NREC_QUERY"			# new query split
-SPLIT_QUERY=${BASE_DIR}/orig_old_query_split/orig_query"$NREC_QUERY"		# old query split
+SPLIT_QUERY=${BASE_DIR}/orig_query_split/orig_query"$NREC_QUERY"		# new query split
+# SPLIT_QUERY=${BASE_DIR}/orig_old_query_split/orig_query"$NREC_QUERY"		# old query split
 echo $SPLIT_QUERY
 
 DESC=$3
