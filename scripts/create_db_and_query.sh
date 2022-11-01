@@ -15,8 +15,8 @@ DB_FILE=${BASE_DB_DIR}/nt
 
 MAKEBLASTDB=/projects/mikem/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
 
-DBSEQUENCES=$(cat m_vals.txt)
-QUERYSEQUENCES=$(cat n_vals.txt)
+DBSEQUENCES=$(cat m_vals_4096.txt)
+QUERYSEQUENCES=$(cat n_vals_4096.txt)
 
 for dsequence in $DBSEQUENCES
 do
