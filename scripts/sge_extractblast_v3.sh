@@ -6,7 +6,7 @@
 #$ -j y 
 #$ -o sge_results
 #				$ -N blast_array
-#$ -t 1-90
+#			$ -t 1-90
 #				$ -pe thread 8
 
 # This script runs all MxN combinations from m_vals and n_vals in an array job
@@ -20,8 +20,12 @@
 
 # DESC is a description of the current job/experiment
 DESC=$1
-DBFILE=m_vals.txt
-QUERYFILE=n_vals.txt
+DBFILE=$2
+QUERYFILE=$3
+
+# DBFILE=m_vals.txt
+# QUERYFILE=n_vals.txt
+
 
 # MxN array, M is row/database, N is column/query
 
