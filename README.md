@@ -9,7 +9,7 @@ This software and documentation (the "Software") were developed at the Food and 
 
 # Reference
 
-  - [1]  T. Cheng, M. Mikailov, P. Chin, K. Cha, N. Petrick, Profiling the BLAST bioinformatics application for load balancing on high-performance computing clusters,  BMC bioinformatics (2022), accepted.
+[1]  T. Cheng, M. Mikailov, P. Chin, K. Cha, N. Petrick, Profiling the BLAST bioinformatics application for load balancing on high-performance computing clusters,  BMC bioinformatics (2022), accepted.
 
 # Experiments
 
@@ -22,49 +22,26 @@ Uploaded the below listed and mentioned in this Wiki page scripts to:
 
 -   <https://github.com/DIDSR/BLAST_LOAD_BALANCING/tree/main/scripts>
 
-1.  [ batch_run_v2.sh](#batch_run_v2.sh "wikilink")
-2.  [ create_db_and_query.sh](#create_db_and_query.sh "wikilink")
-3.  [ extract_blast2.sh](#extract_blast2.sh "wikilink")
-4.  [ failed_rows.sh](#failed_rows.sh "wikilink")
-5.  [ sge_extractblast_v3.sh](#sge_extractblast_v3.sh "wikilink")
-
--   Not, the below instructions to create directories on the GitHub site
-    was used, so “.gitkeep” file is just a placeholder for creating a
-    directory: “You cannot create an empty folder and then add files to
-    that folder, but rather creation of a folder must happen together
-    with adding of at least a single file. This is because git doesn't
-    track empty folders.
-
-On GitHub you can do it this way:
-
--   Go to the folder inside which you want to create another folder
--   Click on New file
--   On the text field for the file name, first write the folder name you
-    want to create
--   Then type /. This creates a folder
--   You can add more folders similarly
--   Finally, give the new file a name (for example, .gitkeep which is
-    conventionally used to make Git track otherwise empty folders; it is
-    not a Git feature though)
--   Finally, click Commit new file.”
-
-Ref.:
-<https://stackoverflow.com/questions/12258399/how-do-i-create-a-folder-in-a-github-repository>
+1.  [ batch_run_v2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/scripts/batch_run_v2.sh)
+2.  [ create_db_and_query.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/scripts/create_db_and_query.sh)
+3.  [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/scripts/extract_blast2.sh)
+4.  [ failed_rows.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/scripts/failed_rows.sh)
+5.  [ sge_extractblast_v3.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/scripts/sge_extractblast_v3.sh)
 
 # Getting a new query file
 
 Downloaded from any:
 
-  
-<http://www.ncbi.nlm.nih.gov/sra/SRP102422>
 
-<https://www.ncbi.nlm.nih.gov/sra/SRP102422>
+- <http://www.ncbi.nlm.nih.gov/sra/SRP102422>
 
-<https://trace.ncbi.nlm.nih.gov/Traces/index.html?view=run_browser&acc=SRR5713923&display=download>
+- <https://www.ncbi.nlm.nih.gov/sra/SRP102422>
 
-<https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fasta?acc=SRR5713923>
+- <https://trace.ncbi.nlm.nih.gov/Traces/index.html?view=run_browser&acc=SRR5713923&display=download>
 
-Convert:
+- <https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fasta?acc=SRR5713923>
+
+To convert:
 
   
 See [FASTQ file to FASTA
@@ -72,7 +49,7 @@ file](https://scl-wiki.fda.gov/wiki/index.php/Technical_questions#FASTQ_file_to_
 
 <https://bioinformaticsworkbook.org/dataWrangling/fastaq-manipulations/converting-fastq-format-to-fasta.html#gsc.tab=0>
 
-" Using SED
+Using SED
 
   
 sed can be used to selectively print the desired lines from a file, so
@@ -88,18 +65,16 @@ time sed -n '1\~4s/^@/\>/p;2\~4p' SRR5713923.fastq \> SRR5713923_2.fasta
 
 ## Scale-out on 4096 nodes
 
-1.  Based on [ Scale-out 4096 table](#Scale-out_4096_table "wikilink")
-    prepare files [ m_values_4096.txt](#m_values_4096.txt "wikilink")
-    and [ n_values_4096.txt](#n_values_4096.txt "wikilink")
+1.  Based on [ Scale-out 4096 table](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#scale-out-4096-table)
+    prepare files [ m_values_4096.txt](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#m_values_4096txt)
+    and [ n_values_4096.txt](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#n_values_4096txt)
 2.  Create an SGE script shown in [
-    create_db_and_query.sh](#create_db_and_query.sh "wikilink").
+    create_db_and_query.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#create_db_and_querysh).
       
-    Adjust "QUERY_FILE=" and "SPLIT_QUERY=" lines in [
-    create_db_and_query.sh](#create_db_and_query.sh "wikilink") to
-    select the old or new query file.
+    Adjust "QUERY_FILE=" and "SPLIT_QUERY=" lines in `create_db_and_query.sh` to select the old or new query file.
 3.  Submit an SGE job:
       
-    qsub [ create_db_and_query.sh](#create_db_and_query.sh "wikilink")
+    `qsub create_db_and_query.sh`
 
 ### Scale-out 4096 table
 
@@ -193,29 +168,26 @@ time sed -n '1\~4s/^@/\>/p;2\~4p' SRR5713923.fastq \> SRR5713923_2.fasta
 
 ## Scale-out on 2048 nodes
 
-1.  Based on [ Scale-out 2048 table](#Scale-out_2048_table "wikilink")
-    prepare files [ m_values_2048.txt](#m_values_2048.txt "wikilink")
-    and [ n_values_2048.txt](#n_values_2048.txt "wikilink")
-2.  Create an SGE script shown in [
-    create_db_and_query.sh](#create_db_and_query.sh "wikilink").
+1.  Based on [ Scale-out 2048 table](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#scale-out-2048-table)
+    prepare files [ m_values_2048.txt](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#m_values_2048txt)
+    and [ n_values_2048.txt](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#n_values_2048txt)
+
+2.  Create an SGE script shown in `create_db_and_query.sh`.
       
     Adjust (a) "QUERY_FILE=" and (b) "SPLIT_QUERY=" lines in [
-    create_db_and_query.sh](#create_db_and_query.sh "wikilink") to
+    create_db_and_query.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#create_db_and_querysh) to
     select the old or new query file.
 
     \(c\) "DBSEQUENCES=" and (d) "QUERYSEQUENCES=" lines to select scale
     out table for 2048 nodes.
+
 3.  Submit an SGE job:
       
-    qsub [ create_db_and_query.sh](#create_db_and_query.sh "wikilink")
+    `qsub create_db_and_query.sh`
 
--   **Note:** Since [ m_values_2048.txt](#m_values_2048.txt "wikilink")
-    and [ n_values_2048.txt](#n_values_2048.txt "wikilink") are sub-sets
-    of [ m_values_4096.txt](#m_values_4096.txt "wikilink") and [
-    n_values_4096.txt](#n_values_4096.txt "wikilink") respectively,
-    there is no need to run [
-    create_db_and_query.sh](#create_db_and_query.sh "wikilink") for 2048
-    scale-out if it was run for 4096 scale-out.
+-   **Note:** Since `m_values_2048.txt` and `n_values_2048.txt` are sub-sets
+    of `m_values_4096.txt` and `n_values_4096.txt` respectively, there is no need to run `create_db_and_query.sh` for 2048
+    scale-out if it was already run for 4096 scale-out.
 
 ### Scale-out 2048 table
 
@@ -256,12 +228,8 @@ time sed -n '1\~4s/^@/\>/p;2\~4p' SRR5713923.fastq \> SRR5713923_2.fasta
 
 # Experiments
 
-[ batch_run_v2.sh](#batch_run_v2.sh "wikilink") (also found at
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface/batch_run_v2.sh**)
-is used to batch run the experiments. [
-batch_run_v2.sh](#batch_run_v2.sh "wikilink") in turn runs [
-sge_extractblast_v3.sh](#sge_extractblast_v3.sh "wikilink") via *qsub*
-SGE command.
+[ batch_run_v2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#batch_run_v2sh) (also found at
+**/scratch/mikem/UserSupport/trinity.cheng/blast_surface/batch_run_v2.sh**) is used to batch run the experiments. `batch_run_v2.sh` runs `sge_extractblast_v3.sh` via the *qsub* SGE command.
 
 “threads” is added to the DESC field in the job submit line to avoid
 overwriting results when running the experiments in the batch mode:
@@ -279,10 +247,10 @@ So, the DESC field is combination of:
 This way BLAST will generate unique files for every qsub to avoid
 overwriting when run in batch mode.
 
-## Running with the new query
+## Running with Query B
 
-If we want to run with **the new query** before the batch run we need to
-(in [ extract_blast2.sh](#extract_blast2.sh "wikilink") file located on
+If we want to run with **Query B** before the batch run we need to modify the
+(in [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#extract_blast2sh) file located on
 **/scratch/mikem/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
 
   
@@ -291,9 +259,8 @@ a\. Comment out lines: 14, 20 and 48
 b\. Uncomment lines: 13, 19 and 47.
 
 See also [ Lines to modify in
-extract_blast2.sh](#Lines_to_modify_in_extract_blast2.sh "wikilink").  
-Then you may adjust the below parameters in [
-batch_run_v2.sh](#batch_run_v2.sh "wikilink"):
+extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#lines-to-modify-in-extract_blast2sh).  
+Then you may adjust the below parameters in `batch_run_v2.sh`:
 
 `num_threads=(1 2 4 8)`  
 `NUM_REPEAT=3`
@@ -301,12 +268,12 @@ batch_run_v2.sh](#batch_run_v2.sh "wikilink"):
 And then run the below command from
 **/scratch/mikem/UserSupport/trinity.cheng/blast_surface** prompt:
 
-`bash `[` batch_run_v2.sh`](#batch_run_v2.sh "wikilink")
+`bash  batch_run_v2.sh`
 
-## Running with the old query
+## Running with Query A
 
-If we want to run with **the old query** before the batch run we need to
-(in [ extract_blast2.sh](#extract_blast2.sh "wikilink") file located on
+If we want to run with Query A before the batch run we need to modify
+(in [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#extract_blast2sh) file located on
 **/scratch/mikem/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
 
   
@@ -315,9 +282,8 @@ a\. Uncomment lines: 14, 20 and 48
 b\. Comment out lines: 13, 19 and 47
 
 See also [ Lines to modify in
-extract_blast2.sh](#Lines_to_modify_in_extract_blast2.sh "wikilink").  
-Then you may adjust the below parameters in [
-batch_run_v2.sh](#batch_run_v2.sh "wikilink"):
+extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#lines-to-modify-in-extract_blast2sh).  
+Then you may adjust the below parameters in `batch_run_v2.sh`:
 
 `num_threads=(1 2 4 8)`  
 `NUM_REPEAT=3`
@@ -325,7 +291,7 @@ batch_run_v2.sh](#batch_run_v2.sh "wikilink"):
 Then run the below command from
 **/scratch/mikem/UserSupport/trinity.cheng/blast_surface prompt**:
 
-`bash `[` batch_run_v2.sh`](#batch_run_v2.sh "wikilink")
+`bash batch_run_v2.sh`
 
 ## Lines to modify in extract_blast2.sh
 
@@ -569,89 +535,6 @@ Author: Trinity Cheng, 2021 Summer Intern.
     		sleep 1 
     	done
     done
-
-<s>
-
-    #!/bin/bash
-    # How to run:
-    # Specify DBFILE, QUERYFILE, num_threads and NUM_REPEAT below
-    # And run:
-    # bash batch_run.sh 
-
-    LOG_DIR=log
-    mkdir -p ${LOG_DIR}
-
-    D=`date +"%FT%T"`
-    # OUT="batch_run_log_"${D//:}".log"
-    OUT="${LOG_DIR}/batch_run_log_"${D//:}".log"
-
-    DBFILE="m_vals_2048.txt"
-    QUERYFILE="n_vals_2048.txt"
-
-    LEN_DB=`cat $DBFILE | wc -l`
-    LEN_QR=`cat $QUERYFILE | wc -l`
-    TASKS=$((LEN_DB*LEN_QR))
-
-    num_threads=(1 2 4 8)
-    NUM_REPEAT=3
-
-    for thr in ${num_threads[@]}; do
-        echo "" 2>&1 | tee >> ${OUT}
-        echo "Submit jobs with threads: $thr" 2>&1 | tee >> ${OUT}
-    	MEM=$((22/$thr))
-    	for (( t=1; t<=${NUM_REPEAT}; t++ ))
-    	do 
-    		echo "" 2>&1 | tee >> ${OUT}
-    		echo "Threads: ${thr}, Test: $t" 2>&1 | tee >> ${OUT}
-    		
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_${thr}_${t}" -l h_vmem=${MEM}G \
-    		-pe thread $thr -l dell01=true -l gpus=0 sge_extractblast_v3.sh \
-    		type1test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		$CMD
-    		sleep 1 
-
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_"${thr}"_"${t}"" -l h_vmem=${MEM}G \
-    		-pe thread "${thr}" -q '*@@betsy_original' sge_extractblast_v3.sh \
-    		type2test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		qsub -t 1-"${TASKS}" -N "blast_array_"${thr}"_"${t}"" -l h_vmem=${MEM}G \
-    		-pe thread "${thr}" -q '*@@betsy_original' sge_extractblast_v3.sh \
-    		type2test"$t"_"$thr" $DBFILE $QUERYFILE 
-    		sleep 1 
-    		
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_${thr}_${t}" -l h_vmem=${MEM}G \
-    		-pe thread $thr -l bigbox sge_extractblast_v3.sh \
-    		type3test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		$CMD 
-    		sleep 1 
-    		
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_${thr}_${t}" -l h_vmem=${MEM}G \
-    		-pe thread $thr -l sm01 sge_extractblast_v3.sh \
-    		type4test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		$CMD 
-    		sleep 1 
-
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_${thr}_${t}" -l h_vmem=${MEM}G \
-    		-pe thread $thr -l sm02 sge_extractblast_v3.sh \
-    		type5test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		$CMD 
-    		sleep 1 
-
-    		CMD="qsub -t 1-"${TASKS}" -N "blast_array_${thr}_${t}" -l h_vmem=${MEM}G \
-    		-pe thread $thr -l hpe01=true -l gpus=0 sge_extractblast_v3.sh \
-    		type6test"$t"_"$thr" $DBFILE $QUERYFILE"
-    		echo "$CMD" 2>&1 | tee >> ${OUT}
-    		$CMD 
-    		sleep 1 
-    	done
-    done
-
-</s>
 
 # failed_rows.sh
 
