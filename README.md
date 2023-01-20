@@ -266,7 +266,7 @@ Then you may adjust the below parameters in `batch_run_v2.sh`:
 `NUM_REPEAT=3`
 
 And then run the below command from
-**/scratch/user1/UserSupport/trinity.cheng/blast_surface** prompt:
+**/scratch/user1/UserSupport/user2/blast_surface** prompt:
 
 `bash  batch_run_v2.sh`
 
@@ -274,7 +274,7 @@ And then run the below command from
 
 If we want to run with Query A before the batch run we need to modify
 (in [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#extract_blast2sh) file located on
-**/scratch/user1/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
+**/scratch/user1/UserSupport/user2/blast_surface/extract_blast2.sh**):
 
   
 a\. Uncomment lines: 14, 20 and 48
@@ -289,7 +289,7 @@ Then you may adjust the below parameters in `batch_run_v2.sh`:
 `NUM_REPEAT=3`
 
 Then run the below command from
-**/scratch/user1/UserSupport/trinity.cheng/blast_surface prompt**:
+**/scratch/user1/UserSupport/user2/blast_surface prompt**:
 
 `bash batch_run_v2.sh`
 
@@ -369,8 +369,6 @@ Author: Trinity Cheng, 2021 Summer Intern.
     # retrieve the first M records from 2.5 GB database, N records from query, put BLAST results in filenameMxN
     # usage: extract_blast2.sh <M> <N> <filename>
 
-    # BASE_DIR=/scratch/trinity.cheng/blast_surface
-
     BASE_DIR=/scratch/user1/UserSupport/user2/blast_surface
 
     TIME_SUMMARY_DIR=${BASE_DIR}/time_summary				# new query result dir
@@ -387,10 +385,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     DB_NAME=nt
     DB_FILE=${BASE_DB_DIR}/nt
 
-    # BASE_DB_DIR=/scratch/trinity.cheng/blast_surface/orig_db_split
-    # DB_NAME=orig_db
-    # DB_FILE=${BASE_DB_DIR}/${DB_NAME}
-
+   
     BLAST=/projects/user1/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/blastn
     MAKEBLASTDB=/projects/user1/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
 
@@ -428,7 +423,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     	$MAKEBLASTDB -in $SPLIT_DB -dbtype nucl
     fi
 
-    BASE_OUT=/scratch/user1/UserSupport/trinity.cheng/blast_surface 
+    BASE_OUT=/scratch/user1/UserSupport/user2/blast_surface 
     # run BLAST and time, put results in sge_reuslts/"$DESC"_"$NREC_DB"X"$NREC_QUERY"
     # output the time in seconds into time_summary.txt file
 
@@ -544,7 +539,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     # Run as: 
     # bash failed_rows.sh 
 
-    DIR=/scratch/user1/UserSupport/trinity.cheng/blast_surface/time_summary
+    DIR=/scratch/user1/UserSupport/user2/blast_surface/time_summary
     OUTPUT=failed_rows.txt
     echo `date` > ${OUTPUT}
     echo "Files on directory: $DIR" >> ${OUTPUT}
