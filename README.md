@@ -229,7 +229,7 @@ time sed -n '1\~4s/^@/\>/p;2\~4p' SRR5713923.fastq \> SRR5713923_2.fasta
 # Experiments
 
 [ batch_run_v2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#batch_run_v2sh) (also found at
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface/batch_run_v2.sh**) is used to batch run the experiments. `batch_run_v2.sh` runs `sge_extractblast_v3.sh` via the *qsub* SGE command.
+**/scratch/user1/UserSupport/user2/blast_surface/batch_run_v2.sh**) is used to batch run the experiments. `batch_run_v2.sh` runs `sge_extractblast_v3.sh` via the *qsub* SGE command.
 
 “threads” is added to the DESC field in the job submit line to avoid
 overwriting results when running the experiments in the batch mode:
