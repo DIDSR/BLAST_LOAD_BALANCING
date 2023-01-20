@@ -14,7 +14,7 @@ This software and documentation (the "Software") were developed at the Food and 
 # Experiments
 
 Location on Betsy:
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface**
+**/scratch/user1/UserSupport/user2/blast_surface**
 
 # Source codes on GitHub
 
