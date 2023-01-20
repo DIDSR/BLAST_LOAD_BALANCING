@@ -126,16 +126,16 @@ time sed -n '1\~4s/^@/\>/p;2\~4p' SRR5713923.fastq \> SRR5713923_2.fasta
 
     # input file: m_vals.txt, n_vals.txt
 
-    BASE_DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface
+    BASE_DIR=/scratch/user1/UserSupport/user2/blast_surface
 
     # QUERY_FILE=${BASE_DIR}/orig_query_split/SRR5713923			# new query
     QUERY_FILE=${BASE_DIR}/orig_old_query_split/orig_query			# old query
 
-    BASE_DB_DIR=/projects/mikem/UserSupport/ncbi/nt_2020
+    BASE_DB_DIR=/projects/user1/UserSupport/ncbi/nt_2020
     DB_NAME=nt
     DB_FILE=${BASE_DB_DIR}/nt
 
-    MAKEBLASTDB=/projects/mikem/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
+    MAKEBLASTDB=/projects/user1/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
 
     DBSEQUENCES=$(cat m_vals_4096.txt)
     QUERYSEQUENCES=$(cat n_vals_4096.txt)
@@ -251,7 +251,7 @@ overwriting when run in batch mode.
 
 If we want to run with **Query B** before the batch run we need to modify the
 (in [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#extract_blast2sh) file located on
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
+**/scratch/user1/UserSupport/user2/blast_surface/extract_blast2.sh**):
 
   
 a\. Comment out lines: 14, 20 and 48
@@ -266,7 +266,7 @@ Then you may adjust the below parameters in `batch_run_v2.sh`:
 `NUM_REPEAT=3`
 
 And then run the below command from
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface** prompt:
+**/scratch/user1/UserSupport/trinity.cheng/blast_surface** prompt:
 
 `bash  batch_run_v2.sh`
 
@@ -274,7 +274,7 @@ And then run the below command from
 
 If we want to run with Query A before the batch run we need to modify
 (in [ extract_blast2.sh](https://github.com/DIDSR/BLAST_LOAD_BALANCING/blob/main/README.md#extract_blast2sh) file located on
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
+**/scratch/user1/UserSupport/trinity.cheng/blast_surface/extract_blast2.sh**):
 
   
 a\. Uncomment lines: 14, 20 and 48
@@ -289,7 +289,7 @@ Then you may adjust the below parameters in `batch_run_v2.sh`:
 `NUM_REPEAT=3`
 
 Then run the below command from
-**/scratch/mikem/UserSupport/trinity.cheng/blast_surface prompt**:
+**/scratch/user1/UserSupport/trinity.cheng/blast_surface prompt**:
 
 `bash batch_run_v2.sh`
 
@@ -371,7 +371,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
 
     # BASE_DIR=/scratch/trinity.cheng/blast_surface
 
-    BASE_DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface
+    BASE_DIR=/scratch/user1/UserSupport/user2/blast_surface
 
     TIME_SUMMARY_DIR=${BASE_DIR}/time_summary				# new query result dir
     # TIME_SUMMARY_DIR=${BASE_DIR}/time_summary_old_query			# old query result dir
@@ -383,7 +383,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     # QUERY_FILE=${BASE_DIR}/orig_old_query_split/orig_query			# old query file
 
 
-    BASE_DB_DIR=/projects/mikem/UserSupport/ncbi/nt_2020
+    BASE_DB_DIR=/projects/user1/UserSupport/ncbi/nt_2020
     DB_NAME=nt
     DB_FILE=${BASE_DB_DIR}/nt
 
@@ -391,8 +391,8 @@ Author: Trinity Cheng, 2021 Summer Intern.
     # DB_NAME=orig_db
     # DB_FILE=${BASE_DB_DIR}/${DB_NAME}
 
-    BLAST=/projects/mikem/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/blastn
-    MAKEBLASTDB=/projects/mikem/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
+    BLAST=/projects/user1/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/blastn
+    MAKEBLASTDB=/projects/user1/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
 
 
     echo $QUERY_FILE
@@ -428,7 +428,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     	$MAKEBLASTDB -in $SPLIT_DB -dbtype nucl
     fi
 
-    BASE_OUT=/scratch/mikem/UserSupport/trinity.cheng/blast_surface 
+    BASE_OUT=/scratch/user1/UserSupport/trinity.cheng/blast_surface 
     # run BLAST and time, put results in sge_reuslts/"$DESC"_"$NREC_DB"X"$NREC_QUERY"
     # output the time in seconds into time_summary.txt file
 
@@ -544,7 +544,7 @@ Author: Trinity Cheng, 2021 Summer Intern.
     # Run as: 
     # bash failed_rows.sh 
 
-    DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface/time_summary
+    DIR=/scratch/user1/UserSupport/trinity.cheng/blast_surface/time_summary
     OUTPUT=failed_rows.txt
     echo `date` > ${OUTPUT}
     echo "Files on directory: $DIR" >> ${OUTPUT}
