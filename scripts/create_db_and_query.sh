@@ -4,16 +4,16 @@
 
 # input file: m_vals.txt, n_vals.txt
 
-BASE_DIR=/scratch/mikem/UserSupport/trinity.cheng/blast_surface
+BASE_DIR=/scratch/user1/UserSupport/user2/blast_surface
 
 # QUERY_FILE=${BASE_DIR}/orig_query_split/SRR5713923			# new query
 QUERY_FILE=${BASE_DIR}/orig_old_query_split/orig_query			# old query
 
-BASE_DB_DIR=/projects/mikem/UserSupport/ncbi/nt_2020
+BASE_DB_DIR=/projects/user1/UserSupport/ncbi/nt_2020
 DB_NAME=nt
 DB_FILE=${BASE_DB_DIR}/nt
 
-MAKEBLASTDB=/projects/mikem/applications/centos7/blast2.12.0_fda/ncbi-blast-2.12.0+-src/c++/ReleaseMT/bin/makeblastdb
+MAKEBLASTDB=./makeblastdb
 
 DBSEQUENCES=$(cat m_vals_4096.txt)
 QUERYSEQUENCES=$(cat n_vals_4096.txt)
